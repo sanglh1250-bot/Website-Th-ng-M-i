@@ -1,0 +1,236 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: radial-gradient(100% 100% at 50% 0%, #dcfce7 0%, #f0fdf4 40%, #e2e8f0 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.auth-wrapper {
+    width: 100%;
+    max-width: 980px;
+}
+
+.auth-card {
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(16, 185, 129, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.04);
+    display: flex;
+    overflow: hidden;
+    min-height: 580px;
+}
+
+/* Cột thương hiệu bên trái */
+.card-brand {
+    flex: 1.1;
+    background: linear-gradient(145deg, #166534, #15803d);
+    color: #ffffff;
+    padding: 56px 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.brand-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 28px;
+    width: fit-content;
+}
+
+.card-brand h2 {
+    font-size: 30px;
+    line-height: 1.35;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+.card-brand p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #bbf7d0;
+    margin-bottom: 36px;
+}
+
+.feature-pills {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.feature-pills span {
+    font-size: 13.5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #f0fdf4;
+}
+
+/* Cột form bên phải */
+.card-form {
+    flex: 1.2;
+    padding: 50px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.tabs {
+    display: flex;
+    border-bottom: 2px solid #f1f5f9;
+    margin-bottom: 28px;
+}
+
+.tab-btn {
+    flex: 1;
+    padding-bottom: 14px;
+    border: none;
+    background: none;
+    font-size: 15px;
+    font-weight: 600;
+    color: #94a3b8;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.25s ease;
+}
+
+.tab-btn.active {
+    color: #15803d;
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: #16a34a;
+    border-radius: 4px 4px 0 0;
+}
+
+.field-group {
+    margin-bottom: 18px;
+}
+
+.field-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 7px;
+}
+
+.input-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-box i:first-child {
+    position: absolute;
+    left: 16px;
+    color: #94a3b8;
+    font-size: 15px;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 13px 44px 13px 44px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 14px;
+    outline: none;
+    background: #f8fafc;
+    transition: all 0.2s ease;
+}
+
+.input-box input:focus {
+    background: #ffffff;
+    border-color: #16a34a;
+    box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.12);
+}
+
+.toggle-eye {
+    position: absolute;
+    right: 16px;
+    color: #94a3b8;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.submit-btn {
+    width: 100%;
+    background: #16a34a;
+    color: #ffffff;
+    border: none;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 10px;
+    transition: all 0.2s ease;
+}
+
+.submit-btn:hover {
+    background: #15803d;
+    box-shadow: 0 8px 16px -4px rgba(22, 163, 74, 0.35);
+    transform: translateY(-1px);
+}
+
+.alert {
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.alert-danger {
+    background: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fee2e2;
+}
+
+.alert-success {
+    background: #f0fdf4;
+    color: #15803d;
+    border: 1px solid #dcfce7;
+}
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 820px) {
+    .card-brand {
+        display: none;
+    }
+    .card-form {
+        padding: 36px 28px;
+    }
+}
