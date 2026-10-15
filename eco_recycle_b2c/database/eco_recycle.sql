@@ -1,6 +1,22 @@
 CREATE DATABASE IF NOT EXISTS eco_recycle_b2c CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE eco_recycle_b2c;
 
+-- 1. Tạo bảng categories (nếu chưa có)
+CREATE TABLE IF NOT EXISTS `categories` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(255) NOT NULL,
+  `slug` VARCHAR(255) NOT NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- 2. Thêm 5 danh mục chính thức
+INSERT INTO `categories` (`id`, `name`, `slug`) VALUES
+(1, 'Thời trang và phụ kiện tái chế', 'thoi-trang-va-phu-kien-tai-che'),
+(2, 'Nội thất và trang trí nhà cửa', 'noi-that-va-trang-tri-nha-cua'),
+(3, 'Văn phòng phẩm và quà tặng', 'van-phong-pham-va-qua-tang'),
+(4, 'Đồ luyện tập và lối sống xanh', 'do-luyen-tap-va-loi-song-xanh'),
+(5, 'Góc đồ cũ tái chế lại', 'goc-do-cu-tai-che-lai');
+
 CREATE TABLE IF NOT EXISTS users (
   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
