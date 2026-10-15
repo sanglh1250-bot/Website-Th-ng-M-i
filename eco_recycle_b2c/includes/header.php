@@ -123,8 +123,16 @@ if (!empty($userAvatar)) {
       </a>
 
       <!-- 4. Giỏ hàng -->
-      <a href="/eco_recycle_b2c/public/cart.php" class="nav-item">
+      <?php 
+        $cartCount = !empty($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
+      ?>
+      <a href="/eco_recycle_b2c/public/cart.php" class="nav-item" style="position: relative;">
         <i class="fa-solid fa-cart-shopping"></i> Giỏ hàng
+        <?php if ($cartCount > 0): ?>
+          <span style="background: #d32f2f; color: #fff; border-radius: 10px; padding: 2px 7px; font-size: 11px; font-weight: bold; margin-left: 4px; vertical-align: top;">
+            <?= $cartCount ?>
+          </span>
+        <?php endif; ?>
       </a>
 
       <!-- 5 & 6. Đăng ký / Đăng nhập HOẶC Avatar + Đăng xuất -->
