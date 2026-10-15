@@ -4,9 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Nhúng file kết nối CSDL và Header
 require_once __DIR__ . '/../config/database.php';
-require_once __DIR__ . '/../includes/header.php';
 
 // Khởi tạo giỏ hàng nếu chưa có
 if (!isset($_SESSION['cart'])) {
@@ -33,6 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Location: cart.php');
     exit;
 }
+
+$pageTitle = 'Giỏ hàng của bạn';
+require_once __DIR__ . '/../includes/header.php';
 
 // Lấy danh sách sản phẩm trong giỏ hàng từ CSDL
 $cart_products = [];
