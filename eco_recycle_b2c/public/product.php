@@ -24,6 +24,7 @@ $msg_error = '';
 
 $msg_cart_success = '';
 if (isset($_GET['added'])) {$msg_cart_success = "Đã thêm sản phẩm vào giỏ hàng thành công!";}
+$isWishlist = !empty($_SESSION['wishlist']) && in_array($id, $_SESSION['wishlist']);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
     $qty = isset($_POST['quantity']) ? (int)$_POST['quantity'] : 1;
@@ -54,10 +55,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_wishlist'])) {
     if (!isset($_SESSION['wishlist'])) {
         $_SESSION['wishlist'] = [];
     }
-    if (!in_array($id, $_SESSION['wishlist'])) {
+    if (in_array($id, $_SESSION['wishlist'])) {
+        $_SESSION['wishlist'] = array_values(array_diff($_SESSION['wishlist'], [$id]));
+    } else {
         $_SESSION['wishlist'][] = $id;
     }
-    header("Location: wishlist.php");
+    header("Location: product.php?id=" . $id);
     exit;
 }
 
@@ -288,7 +291,16 @@ require_once __DIR__ . '/../includes/header.php';
 .btn-wishlist:hover {
     background-color: #e9ecef;
 }
+.btn-wishlist.active {
+    background-color: #ffebee;
+    color: #e53935;
+    border-color: #ffcdd2;
+    font-weight: 600;
+}
 
+.btn-wishlist.active:hover {
+    background-color: #ffcdd2;
+}
 .btn-back {
     display: inline-block;
     margin-top: 20px;
@@ -355,7 +367,9 @@ require_once __DIR__ . '/../includes/header.php';
 
                       <div class="btn-group">
                           <button type="submit" name="add_to_cart" class="btn-add-cart">🛒 Thêm vào giỏ hàng</button>
-                          <button type="submit" name="add_to_wishlist" class="btn-wishlist">♡ Yêu thích</button>
+                          <button type="submit" name="add_to_wishlist" class="btn-wishlist <?= $isWishlist ? 'active' : '' ?>">
+                            <i class="<?= $isWishlist ? 'fa-solid fa-heart' : 'fa-regular fa-heart' ?>" style="<?= $isWishlist ? 'color: #e53935;' : '' ?>"></i>
+                            <?= $isWishlist ? 'Đã yêu thích' : 'Yêu thích' ?> </button>
                       </div>
                   </form>
               <?php else: ?>
@@ -365,7 +379,9 @@ require_once __DIR__ . '/../includes/header.php';
                   <div class="btn-group">
                       <button type="button" disabled class="btn-add-cart" style="background:#ccc; cursor:not-allowed;">Hết hàng</button>
                       <form method="POST">
-                          <button type="submit" name="add_to_wishlist" class="btn-wishlist">♡ Yêu thích</button>
+                          <button type="submit" name="add_to_wishlist" class="btn-wishlist <?= $isWishlist ? 'active' : '' ?>">
+                            <i class="<?= $isWishlist ? 'fa-solid fa-heart' : 'fa-regular fa-heart' ?>" style="<?= $isWishlist ? 'color: #e53935;' : '' ?>"></i>
+                            <?= $isWishlist ? 'Đã yêu thích' : 'Yêu thích' ?> </button>
                       </form>
                   </div>
               <?php endif; ?>
