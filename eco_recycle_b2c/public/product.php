@@ -22,6 +22,9 @@ $user = $_SESSION['user'] ?? null;
 $msg_success = '';
 $msg_error = '';
 
+$msg_cart_success = '';
+if (isset($_GET['added'])) {$msg_cart_success = "Đã thêm sản phẩm vào giỏ hàng thành công!";}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
     $qty = isset($_POST['quantity']) ? (int)$_POST['quantity'] : 1;
     if ($qty < 1) $qty = 1;
@@ -41,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
             $msg_error = "Số lượng muốn mua (" . ($currentQtyInCart + $qty) . ") vượt quá số lượng tồn kho còn lại (" . $currentStock . ")!";
         } else {
             $_SESSION['cart'][$id] = $currentQtyInCart + $qty;
-            header("Location: cart.php");
+            header("Location: roduct.php?id=" . $id . "&added=1");
             exit;
         }
     }
