@@ -6,7 +6,6 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Nhúng file kết nối CSDL và Header
 require_once __DIR__ . '/../config/database.php';
-require_once __DIR__ . '/../includes/header.php';
 
 // Khởi tạo mảng wishlist nếu chưa có
 if (!isset($_SESSION['wishlist'])) {
@@ -31,6 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Location: wishlist.php');
     exit;
 }
+$pageTitle = 'Danh sách yêu thích của bạn';
+require_once __DIR__ . '/../includes/header.php';
 
 // Lấy danh sách sản phẩm yêu thích từ Database
 $wishlist_products = [];
