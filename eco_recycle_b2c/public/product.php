@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
             $msg_error = "Số lượng muốn mua (" . ($currentQtyInCart + $qty) . ") vượt quá số lượng tồn kho còn lại (" . $currentStock . ")!";
         } else {
             $_SESSION['cart'][$id] = $currentQtyInCart + $qty;
-            header("Location: roduct.php?id=" . $id . "&added=1");
+            header("Location: product.php?id=" . $id . "&added=1");
             exit;
         }
     }
